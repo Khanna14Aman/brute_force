@@ -1,0 +1,39 @@
+question==>https://www.codechef.com/problems/KBALANCE
+
+solution==>https://www.codechef.com/viewsolution/51482624
+
+#include<bits/stdc++.h>
+#include <iostream>
+#define int long long 
+using namespace std;
+
+signed main() {
+    int t;
+    cin>>t;
+    while(t--){
+        int n,k;
+        cin>>n>>k;
+        string s;
+        cin>>s;
+        int ans=0;
+        for(int i = 0;i<n;i++){
+            if(s[i]=='1'){
+                if(s[i-k]=='1' && i-k>=0){
+                    continue;
+                }
+                if(i+k<n){
+                    if(s[i+k]=='0'){
+                        ans++;
+                        s[i+k]='1'; // this is adding suppose there is index 15 6 and string 001000000000001  for first occurrence of 1 there we will put 1 so that for last 1 occurrence there is no need to perform any operation 
+                    }
+                }
+                else{
+                    ans++;
+                }
+            }
+        }
+        cout<<ans<<"\n";
+    }
+	// your code goes here
+	return 0;
+}
