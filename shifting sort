@@ -1,0 +1,39 @@
+question==>https://codeforces.com/contest/1579/problem/B
+
+solution==>https://codeforces.com/contest/1579/submission/130198919
+
+#include<bits/stdc++.h>
+#define int long long 
+using namespace std;
+signed main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        int a[n+1],b[n+1];
+        for(int i=1;i<=n;i++){
+            cin>>a[i];
+            b[i]=a[i];
+        }
+        sort(b+1,b+n+1);
+
+        vector<pair<pair<int,int>,int>>v;
+        for(int i=1;i<=n;i++){
+            int j=i;
+            while(a[j]!=b[i] && j<=n){
+                j++;
+            }
+            if(j==i)continue;
+            v.push_back({{i,j},j-i});
+            for(int k = j;k>=i;k--){
+                swap(a[k],a[k-1]);
+            }
+        }
+        cout<<v.size()<<"\n";
+        for(auto it:v){
+            cout<<it.first.first<<" "<<it.first.second<<" "<<it.second<<"\n";
+        }
+    }
+    return 0;
+}
