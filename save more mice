@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+#define int long long 
+using namespace std;
+signed main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int n,k;
+        cin>>n>>k;
+        int a[k];
+        for(int i=0;i<k;i++){
+            cin>>a[i];
+        }
+        sort(a,a+k);
+        int ans=0;
+        int l=0;
+        for(int i=k-1;i>=0;i--){
+            if(l>=a[i])break;      //////  it is clear that last mice will move first and gone to hole in n-index of mice time and within that time cat will also move n-index of mice time 
+                                   //////  so array of size 12 and last mice is at index 10 so mice will take 2 second to enter the hole and cat will move to 2nd index because at each second
+                                   ////// cat will move one index right.....
+                                   
+                                   // // in next move second last mice have to wait till the last mice enter the hole and then it will take n-index of secondlast mice + n-index of last mice
+                                   /////  within that time cat will move to index n-index of secondlast mice + n-index of last mice
+                                   ///// so at any point if index of cat is greater than index of any mice than will break the counting of mice;
+            ans++;
+            l+=n-a[i];
+        }
+        cout<<ans<<"\n";
+    }
+    return 0;
+}
