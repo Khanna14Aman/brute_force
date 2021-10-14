@@ -1,0 +1,39 @@
+question==>https://codeforces.com/contest/122/problem/A
+
+
+#include<bits/stdc++.h>
+#define int long long 
+using namespace std;
+signed main(){
+    int n;
+    cin>>n;
+    if(n%4==0 || n%7==0){       // if n is divisible by four or seven then it  is lucky
+        cout<<"YES\n";
+        return 0;
+    }
+    int flag=0;
+    for(int i=1;i<=n;i++){
+        if(n%i==0){          // if  n is not divisible by 4 or 7 but divisible by other lucky number then it is also lucky  eg==>799 is not divisible by 4 and 7 but divisible by 47 which is itself lucky number
+            flag=0;
+            int temp=i;
+            vector<int>v;
+            while(temp!=0){
+                v.push_back(temp%10);
+                temp/=10;
+            }
+            int no = v.size();
+            for(int i=0;i<no;i++){
+                if(v[i]!=4 && v[i]!=7 ){
+                    flag=1;
+                    break;
+                }
+            }
+            if(flag==0){
+                cout<<"YES\n";
+                return 0;
+            }
+        }
+    }
+    cout<<"NO\n";
+    return 0;
+}
