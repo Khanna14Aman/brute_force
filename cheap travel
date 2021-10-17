@@ -1,0 +1,24 @@
+question==>https://codeforces.com/contest/466/problem/A
+
+#include<bits/stdc++.h>
+#define int long long
+using namespace std;
+signed main(){
+    int n,m,a,b;
+    cin>>n>>m>>a>>b;
+    int ans = n*a;
+    if(m>=n && n*a>=b){
+        ans = min(ans,b);
+    }
+    if(m<n){
+        int ans2 = ((n/m)+1)*b;
+        ans = min(ans,ans2);
+    }
+    if(m<n){
+        int ans2 = (n/m)*b;
+        ans2 = ans2+((n%m)*a);
+        ans = min(ans,ans2);
+    }
+    cout<<ans<<endl;
+    return 0;
+}
